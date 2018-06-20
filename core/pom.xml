@@ -21,7 +21,10 @@
       <groupId>org.jvnet</groupId>
       <artifactId>animal-sniffer-annotation</artifactId>
     </dependency>
-
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>feign-redis</artifactId>
+    </dependency>
     <dependency>
       <groupId>com.squareup.okhttp3</groupId>
       <artifactId>mockwebserver</artifactId>
@@ -40,6 +43,12 @@
       <version>4.2.5.RELEASE</version>
       <scope>test</scope>
     </dependency>
+      <dependency>
+          <groupId>io.github.openfeign</groupId>
+          <artifactId>feign-redis</artifactId>
+          <version>9.5.0</version>
+      </dependency>
+
   </dependencies>
 
   <build>

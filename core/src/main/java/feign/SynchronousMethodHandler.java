@@ -24,6 +24,7 @@ import feign.Request.Options;
 import feign.codec.DecodeException;
 import feign.codec.Decoder;
 import feign.codec.ErrorDecoder;
+import feign.redis.RedisUtil;
 
 import static feign.FeignException.errorExecuting;
 import static feign.FeignException.errorReading;
@@ -85,8 +86,8 @@ final class SynchronousMethodHandler implements MethodHandler {
     }
 
     Object executeAndDecode(RequestTemplate template) throws Throwable {
+        RedisUtil redis = new RedisUtil();//实例化redis
         Request request = targetRequest(template);
-        System.out.println("请求来了：" + template.toString());
         if (logLevel != Logger.Level.NONE) {
             logger.logRequest(metadata.configKey(), logLevel, request);
         }
@@ -109,6 +110,10 @@ final class SynchronousMethodHandler implements MethodHandler {
         String serviceMethod = url.substring(url.lastIndexOf("/") + 1);//服务方法
         String requestMethod = request.method();//请求方式
         long invokeTime = elapsedTime;//调用服务耗时
+
+
+
+
         boolean shouldClose = true;
         try {
             if (logLevel != Logger.Level.NONE) {
